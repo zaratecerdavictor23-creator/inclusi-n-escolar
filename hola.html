@@ -1,0 +1,407 @@
+<!DOCTYPE html>  <html lang="es">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <meta name="description" content="Sitio informativo sobre la inclusión escolar y social." />  
+  <meta name="theme-color" content="#1E88E5" />  
+  <title>Inclusión Escolar y Social</title>    <!-- Google Font -->    <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">    <style>  
+    :root{  
+      --verde: #4CAF50;  
+      --azul: #1E88E5;  
+      --fondo: #ffffff;  
+      --texto: #222;  
+      --gris-claro: #f2f6f9;  
+      --card: #ffffff;  
+      --sombra: rgba(0,0,0,0.08);  
+      --dur: 320ms;  
+      --radius: 12px;  
+    }  
+  
+    /* Dark mode by system preference */  
+    @media (prefers-color-scheme: dark){  
+      :root{  
+        --fondo: #0f1720;  
+        --texto: #e6eef8;  
+        --gris-claro: #0b1220;  
+        --card: #0e1620;  
+        --sombra: rgba(0,0,0,0.6);  
+      }  
+      meta[name="theme-color"]{ content: "#0f1720"; }  
+    }  
+  
+    *{ box-sizing: border-box; margin:0; padding:0; }  
+    html,body{ height:100%; background:var(--fondo); color:var(--texto); font-family: "Poppins", sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; scroll-behavior:smooth;}  
+    a{ color:var(--azul); text-decoration:none; }  
+    img{ display:block; max-width:100%; height:auto; }  
+  
+    /* Header */  
+    header.site-header{  
+      background: linear-gradient(90deg,var(--azul),var(--verde));  
+      color: #fff;  
+      padding:1.25rem 1rem;  
+      position:sticky;  
+      top:0;  
+      z-index:1100;  
+      box-shadow: 0 6px 18px var(--sombra);  
+      border-bottom-left-radius: 0;  
+      border-bottom-right-radius: 0;  
+    }  
+    .header-inner{ max-width:1100px; margin:auto; display:flex; gap:1rem; align-items:center; justify-content:space-between; }  
+    .brand{ display:flex; align-items:center; gap:0.85rem; }  
+    .brand img{ width:64px; height:64px; object-fit:cover; border-radius:50%; border:3px solid rgba(255,255,255,0.2); }  
+    .brand h1{ font-size:1.05rem; font-weight:700; letter-spacing:0.2px; margin:0; }  
+    .brand p{ margin:0; font-size:0.82rem; opacity:0.95; }  
+  
+    /* Nav */  
+    nav.primary{  
+      display:flex; align-items:center; gap:0.25rem;  
+    }  
+    .nav-links{ display:flex; gap:0.35rem; align-items:center; }  
+    .nav-links a{ display:inline-block; padding:0.5rem 0.7rem; border-radius:8px; font-weight:600; color:#ffffffcc; transition:background var(--dur), color var(--dur); }  
+    .nav-links a:hover, .nav-links a.active{ background: rgba(255,255,255,0.12); color: #fff; }  
+    /* mobile toggle */  
+    .menu-toggle{ display:none; background:transparent; border:none; color:white; font-size:1.25rem; cursor:pointer; }  
+  
+.content-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+ align-items: flex-start;
+}
+
+main {
+  flex: 1; /* el main ocupa todo el espacio disponible */
+}
+
+.sidebar {
+  width: 280px;
+  position: sticky;
+  top: 1.5rem; /* distancia desde el top del viewport */
+  align-self: flex-start; /* necesario cuando se usa flex en content-wrapper */
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .content-wrapper{
+    flex-direction: column;
+  }
+  .sidebar{
+    width: 100%;
+  }
+}
+    /* Main content */  
+    main{ max-width:1100px; margin:1.5rem auto; padding:0 1rem; }  
+    section{ margin-bottom:2.5rem; opacity:0; transform:translateY(18px); transition: opacity var(--dur) ease, transform var(--dur) ease; }  
+    section.visible{ opacity:1; transform:translateY(0); }  
+    h2{ color:var(--azul); border-left:6px solid var(--verde); padding-left:.6rem; margin-bottom:.9rem; }  
+    h3{ color:var(--verde); margin-bottom:.4rem; }  
+    p{ margin-bottom:.9rem; color:var(--texto); }  
+  
+    /* Cards & grid */  
+    .grid-ejemplos{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); background:var(--gris-claro); padding:1rem; border-radius:var(--radius); box-shadow: 0 6px 18px var(--sombra); }  
+    .grid-ejemplos article{ background:var(--card); padding:1rem; border-radius:8px; box-shadow: 0 3px 10px var(--sombra); }  
+    .tarjetas{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:.5rem; }  
+    .card{ background:var(--card); padding:1rem; border-radius:10px; flex:1 1 240px; box-shadow: 0 6px 18px var(--sombra); transition: transform var(--dur), box-shadow var(--dur); }  
+    .card:hover{ transform:translateY(-6px); box-shadow: 0 12px 30px var(--sombra); }  
+  
+    /* Form */  
+    form{ background:var(--gris-claro); padding:1.2rem; border-radius:10px; box-shadow: 0 6px 16px var(--sombra); }  
+    label{ display:block; font-weight:600; margin-top:.8rem; margin-bottom:.25rem; }  
+    input, textarea, select{ width:100%; padding:.6rem; border-radius:8px; border:1px solid rgba(0,0,0,0.08); font-family:inherit; }  
+    input:focus, textarea:focus, select:focus{ outline: 2px solid rgba(30,136,229,0.16); border-color:var(--azul); }  
+    button.btn{ margin-top:.9rem; background:var(--verde); color:white; border:none; padding:.6rem .95rem; border-radius:8px; cursor:pointer; font-weight:700; }  
+  
+    /* Floating back-to-top */  
+    #btn-top{ position:fixed; right:20px; bottom:22px; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--azul); color:white; border:none; box-shadow: 0 10px 30px var(--sombra); cursor:pointer; transform:translateY(6px); opacity:0; transition:opacity var(--dur), transform var(--dur); z-index:1200; }  
+    #btn-top.show{ opacity:1; transform:translateY(0); }  
+  
+    /* Footer */  
+    footer{ padding:1.2rem; text-align:center; color:var(--texto); opacity:0.9; margin-top:1rem; }  
+  
+    /* Responsive */  
+    @media (max-width:900px){  
+      .nav-links{ display:none; position: absolute; right: 1rem; top: 74px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02)); backdrop-filter: blur(6px); padding: .6rem; border-radius:10px; box-shadow: 0 8px 24px var(--sombra); flex-direction:column; min-width:200px; }  
+      .nav-links.show{ display:flex; }  
+      .menu-toggle{ display:inline-block; }  
+      .header-inner{ align-items:center; }  
+    }  
+  
+    @media (max-width:600px){  
+      .brand h1{ font-size:1rem; }  
+      .brand p{ display:none; }  
+      main{ padding:0 0.75rem; }  
+      .tarjetas{ flex-direction:column; }  
+    }  
+  
+    /* small helper */  
+    .muted{ color: rgba(0,0,0,0.55); }  
+    @media (prefers-color-scheme: dark){  
+      .muted{ color: rgba(255,255,255,0.55); }  
+    }  
+  </style>  </head>  
+<body>  
+  <header class="site-header" role="banner" aria-label="Encabezado del sitio">  
+    <div class="header-inner">  
+      <div class="brand" aria-hidden="false">  
+        <img src="https://st2.depositphotos.com/1823785/6620/i/950/depositphotos_66209149-stock-photo-many-people-hands-holding-red.jpg"  
+             alt="Manos juntas simbolizando inclusión" width="64" height="64" />  
+        <div>  
+          <h1>Inclusión Escolar y Social</h1>  
+          <p class="muted">Educación para todos, sin dejar a nadie atrás.</p>  
+        </div>  
+      </div>  <nav class="primary" role="navigation" aria-label="Menú principal">  
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">☰</button>  
+
+    <div class="nav-links" id="navLinks">  
+      <a href="#que-es">¿Qué es la inclusión?</a>  
+      <a href="#historia">Breve historia</a>  
+      <a href="#importancia">Importancia</a>  
+      <a href="#principios">Principios</a>  
+      <a href="#estrategias">Estrategias</a>  
+      <a href="#formulario">Tu opinión</a>  
+    </div>  
+  </nav>  
+</div>
+
+  </header>   
+<div class="content-wrapper">
+ <main>  
+    <section id="que-es" tabindex="-1" aria-labelledby="que-es-title">  
+      <h2 id="que-es-title">¿Qué es la Inclusión?</h2>  
+      <p>La inclusión busca garantizar que todas las personas, sin importar sus características, capacidades u origen, participen plenamente en la sociedad. En educación, promueve que todos los estudiantes aprendan juntos, con respeto y apoyo mutuo.</p>  <!-- responsive images with lazy loading and srcset -->  
+  <picture>  
+    <source srcset="https://dondedormiresdespertar.es/wp-content/uploads/2025/02/1_de_marzo_dia_Portada.webp" type="image/webp">  
+    <img class="responsive" loading="lazy"  
+         src="https://dondedormiresdespertar.es/wp-content/uploads/2025/02/1_de_marzo_dia_Portada.webp"  
+         alt="Niños diversos en el aula">  
+  </picture>  
+</section>  
+
+<section id="historia" tabindex="-1" aria-labelledby="historia-title">  
+  <h2 id="historia-title">Breve historia de la inclusión escolar</h2>  
+  <p>La educación inclusiva se fortaleció en el siglo XX como respuesta a la segregación de personas con discapacidad o en situación de vulnerabilidad. La <strong>Declaración de Salamanca (1994)</strong> marcó un hito al reconocer el derecho de todos los niños a recibir educación de calidad en entornos comunes.</p>  
+</section>  
+
+<section id="importancia" tabindex="-1" aria-labelledby="importancia-title">  
+  <h2 id="importancia-title">Importancia de la Inclusión</h2>  
+  <ul>  
+    <li>Promueve el respeto y la empatía desde edades tempranas.</li>  
+    <li>Enriquece el aprendizaje al compartir experiencias diversas.</li>  
+    <li>Fortalece la cohesión social y reduce la exclusión.</li>  
+  </ul>  
+
+  <picture>  
+    <source srcset="https://xihamontessori.com/wp-content/uploads/2025/02/The-Role-of-Teachers-in-Inclusive-Classrooms-1024x448.webp" type="image/webp">  
+    <img class="responsive" loading="lazy"  
+         src="https://xihamontessori.com/wp-content/uploads/2025/02/The-Role-of-Teachers-in-Inclusive-Classrooms-1024x448.webp"  
+         alt="Trabajo colaborativo en la escuela">  
+  </picture>  
+</section>  
+
+<section id="principios" tabindex="-1" aria-labelledby="principios-title">  
+  <h2 id="principios-title">Principios de la Educación Inclusiva</h2>  
+  <div class="grid-ejemplos" role="list">  
+    <article role="listitem">  
+      <h3>Equidad</h3>  
+      <p>Garantizar igualdad de oportunidades educativas para todos.</p>  
+    </article>  
+    <article role="listitem">  
+      <h3>Accesibilidad</h3>  
+      <p>Eliminar barreras físicas, sociales o tecnológicas.</p>  
+    </article>  
+    <article role="listitem">  
+      <h3>Participación</h3>  
+      <p>Involucrar a estudiantes, docentes y familias en la toma de decisiones.</p>  
+    </article>  
+  </div>  
+</section>  
+
+<section id="estrategias" tabindex="-1" aria-labelledby="estrategias-title">  
+  <h2 id="estrategias-title">Estrategias para Fomentar la Inclusión Escolar</h2>  
+  <div class="tarjetas" role="list">  
+    <div class="card" role="listitem">  
+      <h3>Adaptaciones Curriculares</h3>  
+      <p>Ajustar contenidos, tiempos y evaluaciones según las necesidades de cada alumno.</p>  
+    </div>  
+    <div class="card" role="listitem">  
+      <h3>Uso de Tecnología</h3>  
+      <p>Las TIC facilitan el aprendizaje accesible y eliminan barreras comunicativas.</p>  
+    </div>  
+    <div class="card" role="listitem">  
+      <h3>Trabajo Colaborativo</h3>  
+      <p>Promueve la cooperación entre estudiantes, fortaleciendo la inclusión social.</p>  
+    </div>  
+  </div>  
+</section>
+
+.<section id="video" tabindex="-1" aria-labelledby="video-title">
+
+  <h2 id="video-title">Video Informativo sobre Inclusión</h2>  
+  <div class="video-container">  
+    <iframe  
+      src="https://www.youtube.com/embed/fOcI078smV4"  
+      title="Video informativo sobre inclusión"  
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
+      allowfullscreen>  
+    </iframe>  
+  </div>  
+</section>  
+}  
+    <section id="formulario" tabindex="-1" aria-labelledby="formulario-title">  
+      <h2 id="formulario-title">Tu Opinión Cuenta</h2>  
+      <p>Comparte tus ideas sobre cómo mejorar la inclusión en la escuela.</p>  <form id="opiniones-form" aria-describedby="form-desc" novalidate>  
+    <p id="form-desc" class="muted" style="margin-bottom:.6rem;">Los campos marcados con * son obligatorios.</p>  
+
+    <label for="nombre">Nombre *</label>  
+    <input id="nombre" name="nombre" type="text" inputmode="text" autocomplete="name" required aria-required="true" placeholder="Tu nombre">  
+
+    <label for="rol">Soy *</label>  
+    <select id="rol" name="rol" required aria-required="true">  
+      <option value="">Selecciona una opción</option>  
+      <option value="estudiante">Estudiante</option>  
+      <option value="docente">Docente</option>  
+      <option value="padre">Padre/Madre</option>  
+      <option value="otro">Otro</option>  
+    </select>  
+
+    <label for="mensaje">Tu mensaje *</label>  
+    <textarea id="mensaje" name="mensaje" rows="4" required aria-required="true" placeholder="Escribe aquí..."></textarea>  
+
+    <button type="submit" class="btn">Enviar</button>  
+  </form>  
+</section>
+
+  </main>  <button id="btn-top" aria-label="Volver arriba">↑</button>
+
+</main>  <aside class="sidebar" role="complementary">  
+<aside class="sidebar" role="complementary" aria-label="Información adicional sobre la inclusión">  
+  <h2>Sabías que...</h2>  
+  <ul>  
+    <li>🌍 Más de <strong>240 millones</strong> de niños en el mundo viven con alguna discapacidad (UNICEF, 2022).</li>  
+    <li>📚 La educación inclusiva busca que <strong>todos los estudiantes aprendan juntos</strong>, sin importar sus diferencias.</li>  
+    <li>🤝 El <strong>3 de diciembre</strong> se celebra el <em>Día Internacional de las Personas con Discapacidad</em>.</li>  
+  </ul>    <h3>Frase del día</h3>  
+  <blockquote>“La inclusión no es llevar a todos al mismo lugar, sino valorar a cada uno por lo que es.”</blockquote>    <h3>Glosario rápido</h3>  
+  <dl>  
+    <dt>Equidad</dt>  
+    <dd>Ofrecer a cada persona lo que necesita para alcanzar las mismas oportunidades.</dd>  <dt>Accesibilidad</dt>  
+<dd>Diseñar entornos que todas las personas puedan usar sin dificultad.</dd>  
+
+<dt>Diversidad</dt>  
+<dd>Reconocer y valorar las diferencias individuales como una fortaleza.</dd>
+
+  </dl>    <h3>Recursos útiles</h3>  
+  <ul>  
+    <li><a href="https://unesdoc.unesco.org/" target="_blank" rel="noopener">UNESCO - Inclusión Educativa</a></li>  
+    <li><a href="https://www.unicef.org/es/inclusion" target="_blank" rel="noopener">UNICEF - Educación inclusiva</a></li>  
+  </ul>  
+</aside>  
+</div>
+</aside>  <footer>...</footer>  
+  <footer role="contentinfo">  
+    <p>Bautista Bautista Cesar Ivan ‒ Zárate Cerda Victor Adrián</p>  
+    <p><a href="#que-es">Volver arriba</a></p>  
+  </footer>    <script>  
+    // ---- Interactivity: menu toggle ----  
+    const menuToggle = document.getElementById('menuToggle');  
+    const navLinks = document.getElementById('navLinks');  
+  
+    menuToggle.addEventListener('click', () => {  
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';  
+      menuToggle.setAttribute('aria-expanded', String(!expanded));  
+      navLinks.classList.toggle('show');  
+    });  
+  
+    // Close mobile menu on link click  
+    navLinks.querySelectorAll('a').forEach(a => {  
+      a.addEventListener('click', () => {  
+        navLinks.classList.remove('show');  
+        menuToggle.setAttribute('aria-expanded', 'false');  
+      });  
+    });  
+  
+    // ---- Intersection Observer for reveal animations ----  
+    const sections = document.querySelectorAll('main section');  
+    const io = new IntersectionObserver((entries) => {  
+      entries.forEach(entry => {  
+        if (entry.isIntersecting) {  
+          entry.target.classList.add('visible');  
+          // optionally unobserve to improve perf  
+          io.unobserve(entry.target);  
+        }  
+      });  
+    }, { threshold: 0.18 });  
+  
+    sections.forEach(s => io.observe(s));  
+  
+    // ---- Back to top ----  
+    const btnTop = document.getElementById('btn-top');  
+    window.addEventListener('scroll', () => {  
+      if (window.scrollY > 300) btnTop.classList.add('show'); else btnTop.classList.remove('show');  
+      // highlight active nav link  
+      const fromTop = window.scrollY + 120;  
+      document.querySelectorAll('nav a').forEach(link => {  
+        const section = document.querySelector(link.hash);  
+        if (!section) return;  
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {  
+          link.classList.add('active');  
+        } else link.classList.remove('active');  
+      });  
+    });  
+    btnTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));  
+  
+    // ---- Form validation / accessible error feedback ----  
+    const form = document.getElementById('opiniones-form');  
+    form.addEventListener('submit', function (e) {  
+      e.preventDefault();  
+      const nombre = form.nombre.value.trim();  
+      const rol = form.rol.value;  
+      const mensaje = form.mensaje.value.trim();  
+      let errors = [];  
+  
+      if (!nombre) errors.push('Por favor escribe tu nombre.');  
+      if (!rol) errors.push('Selecciona tu rol.');  
+      if (!mensaje) errors.push('Escribe tu mensaje.');  
+  
+      if (errors.length) {  
+        // accessible alert  
+        alert(errors.join('\\n'));  
+        // focus first invalid  
+        if (!nombre) form.nombre.focus();  
+        else if (!rol) form.rol.focus();  
+        else form.mensaje.focus();  
+        return;  
+      }  
+  
+      // Emulación de envío: aquí podrías hacer fetch() a un endpoint  
+      // Actualmente guardamos temporalmente en localStorage para mostrar confirmación  
+      const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');  
+      submissions.push({ nombre, rol, mensaje, fecha: new Date().toISOString() });  
+      localStorage.setItem('submissions', JSON.stringify(submissions));  
+  
+      alert('¡Gracias! Tu opinión ha sido registrada.');  
+  
+      form.reset();  
+    });  
+  
+    // ---- keyboard accessibility: close menu on Escape ----  
+    window.addEventListener('keydown', (e) => {  
+      if (e.key === 'Escape') {  
+        navLinks.classList.remove('show');  
+        menuToggle.setAttribute('aria-expanded','false');  
+      }  
+    });  
+  
+    // ---- Respect reduced-motion preference (remove animations) ----  
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');  
+    if (prefersReduced.matches) {  
+      document.documentElement.style.scrollBehavior = 'auto';  
+      // remove transition by toggling a class if needed — here we simply stop observing  
+      sections.forEach(s => { s.classList.add('visible'); });  
+    }  
+  </script>  </body>  
+</html>
